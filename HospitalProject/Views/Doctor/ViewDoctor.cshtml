@@ -1,0 +1,48 @@
+﻿@model Doctor
+<div class="card" style="width: 40rem;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Doctor ID : @Model.DoctorId</li>
+        <li class="list-group-item">Doctor Name : @Model.Name</li>
+        <li class="list-group-item">Doctor Age : @Model.Age</li>
+        <li class="list-group-item">Doctor Email : @Model.Email</li>
+        <li class="list-group-item">Doctor Phone : @Model.PhoneNumber</li>
+        <li class="list-group-item">Doctor Salary : @Model.Salary</li>
+        <li class="list-group-item">Department : @Model.Department.Name</li>
+        <li class="list-group-item">
+            <strong>Patients:</strong>
+            @if (Model.Patients.Count == 0)
+            {
+                <ul>
+                    <li>No patients available.</li>
+                </ul>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Patient Disease</th>
+                            <th>Diagnosis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var patient in Model.Patients)
+                        {
+                            <tr>
+                                <td>@patient.Name</td>
+                                <td>@patient.Disease</td>
+								@if (patient.Treatments.FirstOrDefault()?.Diagnosis == null)
+                                {<td > No Diagnosis found </td>}
+                                else
+                                {<td>@patient.Treatments.FirstOrDefault()?.Diagnosis</td>}
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </li>
+    </ul>
+</div>
+<a asp-controller="Treatment" asp-action="AllTreatmentsD" asp-route-doctorId="@Model.DoctorId" class="btn btn-success"> Show Treatments </a>
+<a asp-controller="Doctor" asp-action="AllDoctors" class="btn btn-outline-info">Back</a>

@@ -1,0 +1,45 @@
+﻿@model Treatment
+@if (ViewBag.Patients.Count == 0)
+{
+	<h2>This doctor has no patients.</h2>
+
+	<a asp-action="ViewDoctor"
+	   asp-controller="Doctor"
+	   asp-route-id="@ViewBag.DoctorId"
+	   class="btn btn-warning">
+		Back
+	</a>
+}
+else
+{
+	<form asp-action="SaveAdd" method="post">
+		<h2>Add Treatment</h2>
+		<label>Doctor: </label>
+		<input type="hidden" asp-for="DoctorId" value="@ViewBag.DoctorId" />
+		<p>@ViewBag.Doctor.Name</p><br />
+
+		<label>Patient: </label>
+		<select asp-for="PatientId">
+
+			@foreach (var patient in ViewBag.Patients)
+					{
+						<option value="@patient.ID">
+							@patient.Name => @patient.Disease
+						</option>
+					}
+
+				</select>
+
+				<label>Diagnosis: </label>
+				<input type="text" asp-for="Diagnosis" />
+				<span asp-validation-for="Diagnosis" class="text-danger"></span>
+				<br />
+
+				<button type="submit" class="btn btn-primary">Save</button>
+				<a asp-action="AllTreatmentsD"
+				asp-route-doctorId="@ViewBag.DoctorId"
+				class="btn btn-warning">
+					Cancel
+				</a>
+			</form>			
+}

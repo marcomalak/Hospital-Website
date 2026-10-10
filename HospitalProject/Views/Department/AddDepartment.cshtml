@@ -1,0 +1,16 @@
+﻿@model Department
+<form asp-controller="Department" asp-action="SaveAdd">
+	<h2>Add New Department</h2>
+	<label>Department Name:</label>
+	<input type="text" asp-for="Name" required />
+	<span asp-validation-for="Name" class="text-danger"></span>
+	<br /><br />
+
+	<label>Department Description:</label>
+	<input type="text" asp-for="Description" />
+	
+	<br /><br />
+
+	<a class="btn btn-warning" href="/Department/AllDepartments">Cancel</a>
+	<input type="submit" value="Add Department" class="btn btn-primary" />	
+</form>

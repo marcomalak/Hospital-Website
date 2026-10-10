@@ -1,0 +1,33 @@
+﻿@model List<Doctor>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Doctor ID</th>
+			<th scope="col">Doctor Name</th>
+			<th scope="col">Doctor Age</th>
+			<th scope="col">Doctor Email</th>
+			<th scope="col">Doctor Phone</th>
+			<th scope="col">Department Name</th>
+			<th scope="col">Count of Patients</th>
+        </tr>
+    </thead>
+	<tbody>
+		@foreach (var doctor in Model)
+		{
+			<tr>
+				<td>@doctor.DoctorId</td>
+				<td>@doctor.Name</td>
+				<td>@doctor.Age</td>
+				<td>@doctor.Email</td>
+				<td>@doctor.PhoneNumber</td>
+				<td>@doctor.Department.Name</td>
+				<td>@doctor.Patients.Count</td>
+				<td><a class="btn btn-primary" href="/Doctor/ViewDoctor/@doctor.DoctorId">View Details</a>
+				<a class="btn btn-danger" href="/Doctor/DeleteDoctor/@doctor.DoctorId">Delete</a>
+				<a class="btn btn-warning" href="/Doctor/EditDoctor/@doctor.DoctorId">Edit</a></td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a class="btn btn-success" href="/Doctor/AddDoctor">Add New Doctor</a>
+<a class="btn btn-outline-info" href="/Home/Index">Back</a>

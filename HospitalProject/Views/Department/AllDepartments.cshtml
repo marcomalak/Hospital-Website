@@ -1,0 +1,28 @@
+﻿@model List<Department>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Department ID</th>
+			<th scope="col">Department Name</th>
+			<th scope="col">Department Description</th>
+			<th scope="col">Count of Doctors</th>
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var department in Model)
+		{
+			<tr>
+				<td>@department.DepartmentId</td>
+				<td>@department.Name</td>
+				<td>@department.Description</td>
+				<td>@department.Doctors.Count</td>
+				<td><a class="btn btn-primary" href="/Department/ViewDepartment/@department.DepartmentId">View Details</a>
+				<a class="btn btn-danger" href="/Department/DeleteDepartment/@department.DepartmentId">Delete</a>
+				<a class="btn btn-warning" href="/Department/EditDepartment/@department.DepartmentId">Edit</a></td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a class="btn btn-success" href="/Department/AddDepartment">Add New Department</a>
+<a class="btn btn-outline-info" href="/Home/Index">Back</a>

@@ -1,0 +1,18 @@
+﻿@model Department
+<form asp-controller="Department" asp-action="SaveEdit">
+	
+	<input type="hidden" asp-for="DepartmentId" />
+	<br />	<br />
+
+	<label>Department Name:</label>
+	<input asp-for="Name" />
+	<span asp-validation-for="Name" class="text-danger"></span>
+	<br />	<br />
+
+	<label>Department Description:</label>
+	<input asp-for="Description" />
+	<br />	<br />
+
+	<a class="btn btn-warning" href="/Department/AllDepartments">Cancel</a>
+	<input type="submit" value="Save Changes" class="btn btn-primary" />
+</form>

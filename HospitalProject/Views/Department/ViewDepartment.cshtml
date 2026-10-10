@@ -1,0 +1,24 @@
+﻿<div class="card" style="width: 40rem;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Department ID : @Model.DepartmentId</li>
+        <li class="list-group-item">Department Name : @Model.Name</li>
+        <li class="list-group-item">Department Description : @Model.Description</li>
+        <li class="list-group-item">
+            <strong>Doctors:</strong>
+            @if (Model.Doctors.Count == 0 )
+            {
+                <ul><li>No doctors available.</li></ul>
+            }
+            else
+            {
+            <ul>
+                @foreach (var doctor in Model.Doctors)
+                {
+                    <li>@doctor.Name</li>
+                }
+                </ul>            
+            }
+        </li>
+    </ul>
+</div>
+<a class="btn btn-outline-info" href="/Department/AllDepartments">Back</a>

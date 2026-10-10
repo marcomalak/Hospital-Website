@@ -1,0 +1,39 @@
+﻿@model List<Treatment>
+
+@if (Model.Count == 0)
+{
+	<h1>No treatments available for this doctor.</h1>
+}
+else
+{
+	<h3>All Treatments For Doctor @Model.FirstOrDefault().Doctor.Name</h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Patient</th>
+				<th>Disease</th>
+				<th>Diagnosis</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				
+				@foreach (var treatment in Model)
+				{
+					<td>@treatment.Id</td>
+					<td>@treatment.Patient.Name</td>
+					<td>@treatment.Patient.Disease</td>
+					<td>@treatment.Diagnosis</td>
+					<td>
+						<a asp-action="EditTreatment" asp-route-id="@treatment.Id" class="btn btn-primary">Edit</a>
+						<a asp-action="DeleteTreatment" asp-route-id="@treatment.Id" class="btn btn-danger">Delete</a>
+					</td>
+				}
+			</tr>
+		</tbody>
+	</table>			
+}
+<a asp-controller="Treatment" asp-action="AddTreatment" asp-route-doctorId="@ViewBag.Doctor.DoctorId" class="btn btn-success">Add New Treatment</a>
+<a asp-controller="Doctor" asp-action="ViewDoctor" asp-route-id="@ViewBag.Doctor.DoctorId" class="btn btn-outline-info">Back</a>

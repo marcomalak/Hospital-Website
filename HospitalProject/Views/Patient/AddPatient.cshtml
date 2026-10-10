@@ -1,0 +1,40 @@
+﻿@model Patient
+<form asp-controller="Patient" asp-action="SaveAdd">
+	<h2>Add New Patient</h2>
+	<label>Patient Name:</label>
+	<input type="text" asp-for="Name" />
+	<span asp-validation-for="Name" class="text-danger"></span>
+	<br /><br />
+
+	<label>Age:</label>
+	<input type="number" asp-for="Age" />
+	<span asp-validation-for="Age" class="text-danger"></span>
+	<br /><br />
+	
+	<label>Gender:</label>
+	<select asp-for="Gender">
+	@foreach (var gend in ViewBag.Genders)
+	{
+		<option value="@gend">@gend</option>
+	}
+	</select>
+	<br /><br />
+
+	<label>Disease:</label>
+	<input type="text" asp-for="Disease" />
+	<span asp-validation-for="Disease" class="text-danger"></span>
+	<br /><br />
+	<label>Doctors:</label>
+	@foreach (var doctor in ViewBag.Doctors)
+{
+    <div>
+        <input type="checkbox" name="DoctorIDs" value="@doctor.DoctorId" />
+
+        <label>@doctor.Name => @doctor.Department.Name</label>
+    </div>
+}
+	<br /><br />
+
+	<input type="submit" value="Save" class="btn btn-primary"/>
+	<a class="btn btn-warning" href="/Doctor/AllDoctors">Cancel</a>
+</form>
